@@ -4,9 +4,13 @@ import ViewMain from './component/ViewMain'
 import { MdiChevronDown } from '../../public/svg/index'
 
 export default function HomeView() {
+  function toContent() {
+    const contentDom = document.getElementById('content')
+    contentDom.scrollIntoView({block: 'start', behavior: 'smooth'})
+  }
   return <section className={styles.homeView}>
     <NavHeader />
     <ViewMain />
-    <MdiChevronDown className={styles.downIcon} />
+    <MdiChevronDown className={styles.downIcon} onClick={toContent} />
   </section>
 }
