@@ -3,40 +3,41 @@ import styles from '../styles/Home.module.css'
 import HomeView from '../component/HomeView'
 import { MdiTagMultiple, MdiFolderOpen } from '../public/svg'
 import Tag from '../component/Tag'
+import { getTag } from '../lib/tag'
+import { getArticle } from '../lib/aticle'
+import { useRouter } from 'next/router'
 
-export default function Home() {
+export default function Home({tags, articles}) {
+  const router = useRouter()
+  const toDoc = (docPath) => () => {
+    router.push(docPath)
+  }
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>森林的博客</title>
         <meta name="description" content="记录下日常 写写所得" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <HomeView />
+      <HomeView tags={tags} />
       <section className={styles.content} id="content">
         <ul className={styles.articleList}>
-          <li>
-            <div>
-              <h3>js基础</h3>
-              <p>
-                我是一些描述
-              </p>
-            </div>
-            <div>
-              我是内容是内容是内容
-            </div>
-          </li>
-          <li>
-            <div>
-              <h3>js基础</h3>
-              <p>
-                我是一些描述
-              </p>
-            </div>
-            <div>
-              我是内容是内容是内容
-            </div>
-          </li>
+          {
+            articles.map(article => <li 
+              key={article.slug}
+              onClick={toDoc(article.slug)}
+            >
+              <div>
+                <h3>{article.title}</h3>
+                <p>
+                  我是一些描述
+                </p>
+              </div>
+              <div>
+                我是内容是内容是内容
+              </div>
+            </li>)
+          }
         </ul>
         <div className={styles.aside}>
           <div className={styles.tagBox}>
@@ -45,10 +46,7 @@ export default function Home() {
               标签大集合
             </h2>
             <div>
-              <Tag>css</Tag>
-              <Tag>运维</Tag>
-              <Tag>js</Tag>
-              <Tag>数据库</Tag>
+              {tags.map(tag => <Tag key={tag.tag}>{tag.tag}</Tag>)}
             </div>
           </div>
           <div className={styles.tagBox}>
@@ -66,4 +64,15 @@ export default function Home() {
       <div className={styles.rootBg}></div>
     </div>
   )
+}
+
+export function getStaticProps() {
+  const tags = getTag()
+  const articles = getArticle()
+  return {
+    props: {
+      tags,
+      articles
+    }
+  };
 }
