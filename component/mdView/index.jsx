@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import styles from './index.module.css'
 
-export default function MdView() {
+export default function MdView({ content }) {
   return <>
     <Head>
       <link
@@ -31,7 +31,7 @@ export default function MdView() {
     </Head>
     <main className={styles.mkWrap}>
       <div className={styles.paper}>
-        
+        <article dangerouslySetInnerHTML={{ __html: content }} />
       </div>
     </main>
   </>

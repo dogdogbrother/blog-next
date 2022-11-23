@@ -1,6 +1,8 @@
 import { getAllDocs, getDocBySlug } from '../lib/docs';
 import markdownToHtml from '../lib/markdown';
 import Head from 'next/head';
+import MdView from '../component/MdView'
+
 export default function Doc({ _meta, content }) {
   return <>
     <Head>
@@ -29,7 +31,7 @@ export default function Doc({ _meta, content }) {
         rel="stylesheet"
       />
     </Head>
-    <article dangerouslySetInnerHTML={{ __html: content }} />
+    <MdView content={content} />
   </>
   return 
 }
