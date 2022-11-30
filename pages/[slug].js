@@ -6,7 +6,7 @@ import MdView from '../component/MdView'
 export default function Doc({ _meta, content }) {
   return <>
     <Head>
-      <link
+      {/* <link
         rel="preload"
         href="https://unpkg.com/prismjs@0.0.1/themes/prism-tomorrow.css"
         as="script"
@@ -25,7 +25,7 @@ export default function Doc({ _meta, content }) {
         rel="preload"
         href="https://unpkg.com/prismjs@0.0.1/themes/prism-funky.css"
         as="script"
-      />
+      /> */}
       <link
         href={`https://unpkg.com/prismjs@0.0.1/themes/prism-okaidia.css`}
         rel="stylesheet"

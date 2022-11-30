@@ -34,3 +34,7 @@ a {
 .mini-scrollbar::-webkit-scrollbar-track {
   background-color: transparent;
 }
+
+img {
+  max-width: 100%;
+}

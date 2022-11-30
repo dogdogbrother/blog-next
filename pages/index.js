@@ -1,13 +1,15 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import styles from '../styles/Home.module.css'
 import HomeView from '../component/HomeView'
 import { MdiTagMultiple, MdiFolderOpen } from '../public/svg'
 import Tag from '../component/Tag'
 import { getTag } from '../lib/tag'
+import { getBook } from '../lib/book'
 import { getArticle } from '../lib/aticle'
 import { useRouter } from 'next/router'
 
-export default function Home({tags, articles}) {
+export default function Home({tags, books, articles}) {
   const router = useRouter()
   const toDoc = (docPath) => () => {
     router.push(docPath)
@@ -19,13 +21,14 @@ export default function Home({tags, articles}) {
         <meta name="description" content="记录下日常 写写所得" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <HomeView tags={tags} />
+      <HomeView tags={tags} books={books} />
       <section className={styles.content} id="content">
         <ul className={styles.articleList}>
           {
-            articles.map(article => <li 
+            articles.map(article => <Link
+              target='_blank'
+              href={article.slug}
               key={article.slug}
-              onClick={toDoc(article.slug)}
             >
               <div>
                 <h3>{article.title}</h3>
@@ -36,7 +39,7 @@ export default function Home({tags, articles}) {
               <div>
                 我是内容是内容是内容
               </div>
-            </li>)
+            </Link>)
           }
         </ul>
         <div className={styles.aside}>
@@ -55,8 +58,9 @@ export default function Home({tags, articles}) {
               文章专栏
             </h2>
             <ul>
-              <li>electron开发实录</li>
-              <li>nextjs</li>
+              {
+                books.map(book => <li key={book.book}>{book.book}</li>)
+              }
             </ul>
           </div>
         </div>
@@ -68,10 +72,12 @@ export default function Home({tags, articles}) {
 
 export function getStaticProps() {
   const tags = getTag()
+  const books = getBook()
   const articles = getArticle()
   return {
     props: {
       tags,
+      books,
       articles
     }
   };

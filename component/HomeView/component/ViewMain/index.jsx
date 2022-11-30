@@ -1,7 +1,7 @@
 import styles from './index.module.css'
 import Tag from '../../../Tag'
 
-export default function ViewMain({ tags }) {
+export default function ViewMain({ tags, books }) {
   return <div className={styles.viewMain}>
     {/* <img src="/img/favicon.png" alt="avatar" /> */}
     <img src="https://blog.qbb.sh/images/avatar.png" alt="avatar" />
@@ -13,10 +13,8 @@ export default function ViewMain({ tags }) {
       {tags.map(tag => <Tag key={tag.tag}>{tag.tag}</Tag>)}
     </div>
     <div className={styles.border}></div>
-    {/* <div className={styles.tagBox}>
-      <Tag>css</Tag>
-      <Tag>运维</Tag>
-      <Tag>js</Tag>
-    </div> */}
+    <div className={styles.tagBox}>
+      {books.map(book => <Tag key={book.book}>{book.book}</Tag>)}
+    </div>
   </div>
 }
