@@ -1,15 +1,19 @@
 import Head from 'next/head'
-import Link from 'next/link'
-import styles from '../styles/Home.module.css'
+// import Link from 'next/link'
+// import styles from '../styles/Home.module.css'
 import HomeView from '../component/HomeView'
-import { MdiTagMultiple, MdiFolderOpen } from '../public/svg'
-import Tag from '../component/Tag'
-import { getTag } from '../lib/tag'
-import { getBook } from '../lib/book'
-import { getArticle } from '../lib/aticle'
+// import { MdiTagMultiple, MdiFolderOpen } from '../public/svg'
+// import Tag from '../component/Tag'
+// import { getTag } from '../lib/docs'
+// import { getBook } from '../lib/docs'
+// import { getArticle } from '../lib/aticle'
 import { useRouter } from 'next/router'
+import docsInfo from '../lib/docs'
 
-export default function Home({tags, books, articles}) {
+export default function Home(
+  // {tags, books, articles}
+  { tags, books }
+) {
   const router = useRouter()
   const toDoc = (docPath) => () => {
     router.push(docPath)
@@ -22,7 +26,7 @@ export default function Home({tags, books, articles}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <HomeView tags={tags} books={books} />
-      <section className={styles.content} id="content">
+      {/* <section className={styles.content} id="content">
         <ul className={styles.articleList}>
           {
             articles.map(article => <Link
@@ -65,15 +69,17 @@ export default function Home({tags, books, articles}) {
           </div>
         </div>
       </section>
-      <div className={styles.rootBg}></div>
+      <div className={styles.rootBg}></div> */}
     </div>
   )
 }
 
 export function getStaticProps() {
-  const tags = getTag()
-  const books = getBook()
-  const articles = getArticle()
+  const tags = docsInfo.getTag()
+  console.log(tags);
+  const books = docsInfo.getBook()
+  console.log(books);
+  const articles = docsInfo.getArticle()
   return {
     props: {
       tags,
