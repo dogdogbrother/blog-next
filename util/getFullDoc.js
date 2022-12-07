@@ -1,8 +1,7 @@
 import fs from 'fs';
 import { join } from 'path';
-import matter from 'gray-matter';
 
-const rootDirectory = join(process.cwd(), 'docs');
+export const rootDirectory = join(process.cwd(), 'docs');
 // 获取到全部的文档已经文件夹下的文档,把文件信息加工后返给外面
 export function getFullDoc() {
   const docs = []
@@ -38,4 +37,5 @@ export function getFullDoc() {
   })
   return docs
 }
+
 

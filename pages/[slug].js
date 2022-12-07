@@ -1,9 +1,9 @@
-// import { getAllDocs, getDocBySlug } from '../lib/docs';
-// import markdownToHtml from '../lib/markdown';
-import Head from 'next/head';
-// import MdView from '../component/MdView'
+import markdownToHtml from '../lib/markdown'
+import Head from 'next/head'
+import MdView from '../component/MdView'
+import docsInfo from '../lib/docs'
 
-export default function Doc({ _meta, content }) {
+export default function Doc({ meta, content }) {
   return <>
     <Head>
       {/* <link
@@ -31,30 +31,29 @@ export default function Doc({ _meta, content }) {
         rel="stylesheet"
       />
     </Head>
-    {/* <MdView content={content} /> */}
+    <MdView content={content} />
   </>
-  return 
 }
 
-// export async function getStaticProps({ params }) {
-//   const doc = getDocBySlug(params.slug)
-//   const content = await markdownToHtml(doc.content || '');
-//   return {
-//     props: {
-//       ...doc,
-//       content
-//     }
-//   };
-// }
+export async function getStaticProps({ params }) {
+  const doc = docsInfo.getDocByFilePath(params.slug.replace('-path-', '/'))
+  const content = await markdownToHtml(doc.content || '');
+  return {
+    props: {
+      ...doc,
+      content
+    }
+  };
+}
 
-// export async function getStaticPaths() {
-//   const docs = getAllDocs();
-//   return {
-//     paths: docs.map(doc => ({
-//       params: {
-//         slug: doc.slug
-//       }
-//     })),
-//     fallback: 'blocking'
-//   }
-// }
+export function getStaticPaths() {
+  const docs = docsInfo.getArticle();
+  return {
+    paths: docs.map(doc => ({
+      params: {
+        slug: doc.slug.replace('/', '-path-')
+      }
+    })),
+    fallback: 'blocking'
+  }
+}
