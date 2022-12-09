@@ -1,4 +1,3 @@
-import markdownToHtml from '../lib/markdown'
 import Head from 'next/head'
 import MdView from '../component/MdView'
 import docsInfo from '../lib/docs'
@@ -36,8 +35,7 @@ export default function Doc({ meta, content }) {
 }
 
 export async function getStaticProps({ params }) {
-  const doc = docsInfo.getDocByFilePath(params.slug.replace('-path-', '/'))
-  const content = await markdownToHtml(doc.content || '');
+  const { content, ...doc } = docsInfo.getDocByFilePath(params.slug.replace('-path-', '/'))
   return {
     props: {
       ...doc,

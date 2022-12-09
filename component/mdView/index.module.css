@@ -4,6 +4,80 @@
   margin: 0 auto;
   min-height: 100vh;
   background-color: #fff;
+  /* table的样式 */
+}
+.mkWrap h1 {
+  margin: 25px 0;
+}
+.mkWrap h2 {
+  margin: 20px 0;
+}
+.mkWrap h3 {
+  margin: 15px 0;
+}
+.mkWrap p {
+  margin: 15px 0;
+}
+.mkWrap pre {
+  margin: 20px 0;
+}
+.mkWrap hr {
+  margin: 20px 0;
+}
+.mkWrap p {
+  line-height: 1.6;
+}
+.mkWrap blockquote {
+  margin: 10px 0;
+  padding: 10px 15px 10px 30px;
+  background-color: rgba(255, 228, 196, 0.4);
+  position: relative;
+}
+.mkWrap blockquote::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 3px;
+  background-color: aquamarine;
+}
+.mkWrap :not(pre) > code {
+  color: blueviolet;
+  margin: 0 5px;
+  font-weight: bold;
+  font-size: 1.4em;
+}
+.mkWrap img {
+  max-width: 100%;
+}
+.mkWrap table {
+  border-collapse: collapse;
+  border: 1px solid rgba(170, 170, 170, 0.6);
+}
+.mkWrap table thead {
+  padding: 15px 0;
+  background-color: rgba(204, 204, 204, 0.6);
+}
+.mkWrap table thead th {
+  border-right: 1px solid rgba(170, 170, 170, 0.6);
+  padding: 5px 10px;
+}
+.mkWrap table thead th:last-child {
+  border-right: none;
+}
+.mkWrap tbody tr {
+  border-bottom: 1px solid rgba(170, 170, 170, 0.6);
+}
+.mkWrap tbody tr:last-child {
+  border-bottom: none;
+}
+.mkWrap tbody td {
+  border-right: 1px solid rgba(170, 170, 170, 0.6);
+  padding: 5px 10px;
+}
+.mkWrap tbody td:last-child {
+  border-right: none;
 }
 .paper {
   background-image: linear-gradient(90deg, #3200000d 4%, transparent 0), linear-gradient(0deg, #3200000d 4%, transparent 0);

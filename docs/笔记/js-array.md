@@ -12,9 +12,9 @@ book: 笔记本
 ```js
 const newArray = arrayObject.concat(arrayX,arrayX,......,arrayX)
 ```
-参数|说明|
---|:--:|
-arrayX|必需。该参数可以是具体的值，也可以是数组对象。可以是任意多个。|
+|参数|说明|
+|--|:--:|
+|arrayX|必需。该参数可以是具体的值，也可以是数组对象。可以是任意多个。|
 
 ## join() 数组变成字符串
 
