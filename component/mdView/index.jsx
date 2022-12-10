@@ -1,39 +1,56 @@
-import Head from 'next/head'
 import styles from './index.module.css'
 import MarkDown from 'markdown-to-jsx'
 import Prism from 'prismjs'
+import 'prismjs/components/prism-less'
+import 'prismjs/themes//prism-okaidia.css'
+import { useEffect, useState } from 'react'
+const debounce = (func, delay) => {
+  let timeout;
+  return (...param) => {
+    if (timeout) {
+      clearTimeout(timeout);
+    }
+    timeout = setTimeout(function() {
+      func(...param);
+    }, delay);
+  }
+}
+
 export default function MdView({ content }) {
+  const [domList, setDomList] = useState([])
+  const [activeIndex, setActiveIndex] = useState(null)
+
+  const secrrol = h2List => debounce(() => {
+    // 是否有h2标签在屏幕上方一小块区域
+    const findIndex = h2List.findIndex(h2 => {
+      const diff = window.scrollY - h2.offsetTop
+      return diff < 20 && diff > -100
+    })
+    if (findIndex > -1) {
+      return setActiveIndex(findIndex)
+    }
+    // 当前没有找到 就找下面最近的h2, index - 1后就是最近的上面的
+    const nextLatelyIndex = h2List.findIndex(h2 => (h2.offsetTop - window.scrollY) > 220)
+    if (nextLatelyIndex > 0) {
+      return setActiveIndex(nextLatelyIndex - 1)
+    }
+  }, 150)
+  useEffect(() => {
+    const h2List = document.querySelectorAll('article h2') || []
+    const _domList = Array.from(h2List)
+    setDomList(_domList)
+    secrrol(_domList)()
+    window.addEventListener('scroll', secrrol(_domList))
+  }, [])
+  const changeActive = (index) => () => {
+    domList[index].scrollIntoView({block: 'start', behavior: 'smooth'})
+    setActiveIndex(index)
+  }
+  
   return <>
-    <Head>
-      <link
-        rel="preload"
-        href="https://unpkg.com/prismjs@0.0.1/themes/prism-tomorrow.css"
-        as="script"
-      />
-      <link
-        rel="preload"
-        href="https://unpkg.com/prismjs@0.0.1/themes/prism-coy.css"
-        as="script"
-      />
-      <link
-        rel="preload"
-        href="https://unpkg.com/prismjs@0.0.1/themes/prism-okaidia.css"
-        as="script"
-      />
-      <link
-        rel="preload"
-        href="https://unpkg.com/prismjs@0.0.1/themes/prism-funky.css"
-        as="script"
-      />
-      <link
-        href={`https://unpkg.com/prismjs@0.0.1/themes/prism-okaidia.css`}
-        rel="stylesheet"
-      />
-    </Head>
     <main className={styles.mkWrap}>
       <div className={styles.paper}>
         <MarkDown
-        //把 ](/img/ 替换成本机文本的绝对路径
           children={content}
           options={{ 
             forceBlock: true, 
@@ -45,16 +62,27 @@ export default function MdView({ content }) {
             }
           }}
         ></MarkDown>
-        {/* <article dangerouslySetInnerHTML={{ __html: content }} /> */}
       </div>
+      {
+        domList && <ul className={styles.catalog}>
+          {
+            domList.map((title, index) => <li 
+              key={index}
+              onClick={changeActive(index)}
+              className={activeIndex === index ? styles.active : ''}
+            >
+              {title.innerText}
+            </li>)
+          }
+        </ul>
+      }
     </main>
   </>
 }
 
 function Code({className, children}) {
   if (className) {
-    const newLanguage = className.replace("lang-", "language-");
-    const type = newLanguage.split('language-')[1]
+    const type = className.split('lang-')[1]
     return <code 
       className={className}
       dangerouslySetInnerHTML={{

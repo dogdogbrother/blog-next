@@ -9,9 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "babel-plugin-prismjs": "^2.1.0",
     "gray-matter": "^4.0.3",
     "markdown-to-jsx": "^7.1.8",
     "next": "13.0.4",
+    "prismjs": "^1.29.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   }

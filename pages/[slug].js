@@ -1,34 +1,11 @@
 import Head from 'next/head'
-import MdView from '../component/MdView'
+import MdView from '../component/MdView/index.jsx'
 import docsInfo from '../lib/docs'
 
 export default function Doc({ meta, content }) {
   return <>
     <Head>
-      {/* <link
-        rel="preload"
-        href="https://unpkg.com/prismjs@0.0.1/themes/prism-tomorrow.css"
-        as="script"
-      />
-      <link
-        rel="preload"
-        href="https://unpkg.com/prismjs@0.0.1/themes/prism-coy.css"
-        as="script"
-      />
-      <link
-        rel="preload"
-        href="https://unpkg.com/prismjs@0.0.1/themes/prism-okaidia.css"
-        as="script"
-      />
-      <link
-        rel="preload"
-        href="https://unpkg.com/prismjs@0.0.1/themes/prism-funky.css"
-        as="script"
-      /> */}
-      <link
-        href={`https://unpkg.com/prismjs@0.0.1/themes/prism-okaidia.css`}
-        rel="stylesheet"
-      />
+      <title>{meta.title}</title>
     </Head>
     <MdView content={content} />
   </>

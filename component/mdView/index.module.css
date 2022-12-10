@@ -1,39 +1,61 @@
 .mkWrap {
   width: 96%;
-  max-width: 1182px;
+  max-width: 1382px;
   margin: 0 auto;
   min-height: 100vh;
+  display: flex;
+  padding: 20px 0;
+  align-items: flex-start;
+}
+.paper {
+  border-radius: 5px;
+  flex: 1;
+  margin-right: 20px;
   background-color: #fff;
+  background-image: linear-gradient(90deg, #3200000d 4%, transparent 0), linear-gradient(0deg, #3200000d 4%, transparent 0);
+  background-size: 20px 20px;
+  padding: 30px;
+  border-top: 1px solid rgba(50, 0, 0, 0.02);
+  border-bottom: 1px solid rgba(50, 0, 0, 0.02);
+  min-height: 50vh;
   /* table的样式 */
 }
-.mkWrap h1 {
+.paper h1 {
   margin: 25px 0;
 }
-.mkWrap h2 {
-  margin: 20px 0;
+.paper h2 {
+  margin: 20px 0 15px;
+  border-bottom: 1px solid rgba(51, 51, 51, 0.2);
+  padding-bottom: 5px;
 }
-.mkWrap h3 {
+.paper h3 {
   margin: 15px 0;
 }
-.mkWrap p {
+.paper p {
   margin: 15px 0;
 }
-.mkWrap pre {
+.paper pre {
   margin: 20px 0;
 }
-.mkWrap hr {
+.paper hr {
   margin: 20px 0;
 }
-.mkWrap p {
+.paper p {
   line-height: 1.6;
 }
-.mkWrap blockquote {
+.paper ul {
+  margin: 20px 20px 20px 40px;
+}
+.paper li {
+  margin: 10px 0;
+}
+.paper blockquote {
   margin: 10px 0;
   padding: 10px 15px 10px 30px;
   background-color: rgba(255, 228, 196, 0.4);
   position: relative;
 }
-.mkWrap blockquote::before {
+.paper blockquote::before {
   content: '';
   position: absolute;
   top: 0;
@@ -42,48 +64,73 @@
   width: 3px;
   background-color: aquamarine;
 }
-.mkWrap :not(pre) > code {
+.paper :not(pre) > code {
   color: blueviolet;
   margin: 0 5px;
   font-weight: bold;
   font-size: 1.4em;
 }
-.mkWrap img {
+.paper img {
   max-width: 100%;
 }
-.mkWrap table {
+.paper table {
   border-collapse: collapse;
   border: 1px solid rgba(170, 170, 170, 0.6);
+  margin: 20px 0;
 }
-.mkWrap table thead {
+.paper table thead {
   padding: 15px 0;
   background-color: rgba(204, 204, 204, 0.6);
 }
-.mkWrap table thead th {
+.paper table thead th {
   border-right: 1px solid rgba(170, 170, 170, 0.6);
   padding: 5px 10px;
 }
-.mkWrap table thead th:last-child {
+.paper table thead th:last-child {
   border-right: none;
 }
-.mkWrap tbody tr {
+.paper tbody tr {
   border-bottom: 1px solid rgba(170, 170, 170, 0.6);
 }
-.mkWrap tbody tr:last-child {
+.paper tbody tr:last-child {
   border-bottom: none;
 }
-.mkWrap tbody td {
+.paper tbody td {
   border-right: 1px solid rgba(170, 170, 170, 0.6);
   padding: 5px 10px;
 }
-.mkWrap tbody td:last-child {
+.paper tbody td:last-child {
   border-right: none;
 }
-.paper {
-  background-image: linear-gradient(90deg, #3200000d 4%, transparent 0), linear-gradient(0deg, #3200000d 4%, transparent 0);
-  background-size: 20px 20px;
-  padding: 30px;
-  border-top: 1px solid rgba(50, 0, 0, 0.02);
-  border-bottom: 1px solid rgba(50, 0, 0, 0.02);
-  min-height: 50vh;
+.catalog {
+  min-width: 180px;
+  min-width: 260px;
+  margin: 0;
+  background-color: #fff;
+  position: sticky;
+  top: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  list-style: none;
+  border: 1px solid rgba(204, 204, 204, 0.3);
+}
+.catalog li {
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-bottom: 2px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.catalog li:hover {
+  background-color: rgba(238, 238, 238, 0.4);
+}
+.catalog li.active {
+  background-color: rgba(0, 0, 255, 0.7);
+  color: #fff;
+}
+.catalog li:last-child {
+  margin-bottom: 0;
 }
