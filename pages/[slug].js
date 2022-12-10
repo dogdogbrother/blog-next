@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import MdView from '../component/MdView/index.jsx'
+import MdView from '../component/mdView'
 import docsInfo from '../lib/docs'
 
 export default function Doc({ meta, content }) {
