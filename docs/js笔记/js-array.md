@@ -1,7 +1,7 @@
 ---
 title: js基础语法-数组
 tags: js基础语法 array
-book: 笔记本
+book: js笔记本
 ---
 ## concat() 连接两个数组
 

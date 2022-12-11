@@ -1,7 +1,7 @@
 ---
 title: css选择器
 tags: 选择器
-book: 笔记本
+book: css笔记本
 ---
 
 ## :is() 包含

@@ -1,7 +1,7 @@
 ---
 title: js基础语法-数字
 tags: js基础语法 object
-book: 笔记本
+book: js笔记本
 ---
 
 ## toString()

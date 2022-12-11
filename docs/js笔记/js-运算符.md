@@ -1,7 +1,7 @@
 ---
 title: js基础语法-运算符
 tags: js基础语法 运算符
-book: 笔记本
+book: js笔记本
 ---
 ## 取余 %
 

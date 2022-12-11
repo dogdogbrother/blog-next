@@ -1,7 +1,7 @@
 ---
 title: js基础语法-字符串
 tags: js基础语法 string
-book: 笔记本
+book: js笔记本
 ---
 ## indexOf()/lastIndexOf()/includes()
 
