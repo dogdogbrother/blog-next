@@ -4,11 +4,11 @@ import styles from '../styles/Home.module.css'
 import HomeView from '../component/HomeView'
 import { MdiTagMultiple, MdiFolderOpen } from '../public/svg'
 import Tag from '../component/Tag'
-import { useRouter } from 'next/router'
 import docsInfo from '../lib/docs'
+import markdownToTxt from 'markdown-to-txt'
 
-export default function Home({tags, books, articles}) {
-  const router = useRouter()
+export default function Home({tags, books, articles }) {
+  
   return (
     <div>
       <Head>
@@ -27,12 +27,21 @@ export default function Home({tags, books, articles}) {
             >
               <div>
                 <h3>{article.title}</h3>
-                <p>
-                  我是一些描述
-                </p>
+                <div className={styles.description}>
+                  <div>
+                    <span className={styles.label}>专栏:</span>
+                    <tag>{article.dir}</tag>
+                  </div>
+                  <div className={styles.tagWrap}>
+                    <span className={styles.label}>标签:</span>
+                    {
+                      article.tags.map(tag => <tag>{tag}</tag>)
+                    }
+                  </div>
+                </div>
               </div>
-              <div>
-                我是内容是内容是内容
+              <div className={styles.listContent}>
+                {markdownToTxt(article.content).substring(0, 200)}
               </div>
             </Link>)
           }
@@ -75,5 +84,26 @@ export function getStaticProps() {
       books,
       articles
     }
-  };
+  }
+}
+
+function getDescription(article) {
+  console.log(article);
+  const { tags, dir } = article
+  console.log(tags);
+  const Book = <div>
+    <span className={styles.label}>专栏:</span>
+    <tag>{dir}</tag>
+  </div>
+
+  const Tags = <div className={styles.tagWrap}>
+    <span className={styles.label}>标签:</span>
+    {
+      tags.map(tag => <tag>{tag}</tag>)
+    }
+  </div>
+  return <div className={styles.description}>
+    { Book }
+    { Tags }
+  </div>
 }

@@ -70,6 +70,7 @@ export default function MdView({ content }) {
               key={index}
               onClick={changeActive(index)}
               className={activeIndex === index ? styles.active : ''}
+              title={title.innerText}
             >
               {title.innerText}
             </li>)
