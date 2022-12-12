@@ -1,6 +1,6 @@
 ---
 title: css选择器
-tags: 选择器
+tags: css 选择器
 book: css笔记本
 ---
 
