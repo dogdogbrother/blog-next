@@ -8,8 +8,8 @@ book: css笔记本
 
 ```css
 .box{
-  text-overflow:ellipsis;
+  text-overflow: ellipsis;
   overflow: hidden;
-  white-space:nowrap;
+  white-space: nowrap;
 }
 ```
