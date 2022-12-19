@@ -1,6 +1,6 @@
 ---
 title: webpack跨域、resolve解析、环境变量
-tags: webpack跨域 webpack解析 webpack环境变量
+tags: webpack
 book: webpack
 ---
 ## 跨域设置

@@ -1,6 +1,6 @@
 ---
 title: webpack图片/多页面/sourceMap/watch处理
-tags: webpack图片处理 webpack多页面处理 webpack-sourceMap处理 webpack-watch处理
+tags: webpack
 book: webpack
 ---
 ## 图片处理

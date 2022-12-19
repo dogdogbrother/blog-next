@@ -1,6 +1,6 @@
 ---
 title: webpack优化、noParse、IgnorePlugin、DllPlugin
-tags: webpack-noParse webpack-IgnorePlugin webpack-DllPlugin
+tags: webpack
 book: webpack
 ---
 ## noParse 忽略解析

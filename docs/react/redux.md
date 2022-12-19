@@ -1,3 +1,8 @@
+---
+title: react-redux
+tags: redux
+book: react
+---
 ## 认识redux
 
 作为最老牌的react状态管理工具,`redux`既简单又复杂.

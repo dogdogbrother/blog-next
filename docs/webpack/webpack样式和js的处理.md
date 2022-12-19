@@ -1,6 +1,6 @@
 ---
 title: webpack样式和js的处理
-tags: webpack 样式处理 js处理
+tags: webpack
 book: webpack
 ---
 ## 基本的样式

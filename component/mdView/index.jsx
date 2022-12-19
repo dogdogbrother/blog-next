@@ -2,6 +2,8 @@ import styles from './index.module.css'
 import MarkDown from 'markdown-to-jsx'
 import Prism from 'prismjs'
 import 'prismjs/components/prism-less'
+import 'prismjs/components/prism-bash'
+import 'prismjs/components/prism-json'
 import 'prismjs/themes//prism-okaidia.css'
 import { useEffect, useState } from 'react'
 const debounce = (func, delay) => {

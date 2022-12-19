@@ -1,6 +1,6 @@
 ---
 title: webpack基础使用
-tags: webpack webpack基础
+tags: webpack
 book: webpack
 ---
 ## 安装初使用 webpack
