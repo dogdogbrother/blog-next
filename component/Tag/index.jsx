@@ -20,6 +20,7 @@ import styles from './index.module.css'
 export default function Tag(props) {
   // const [leftColor, rightColor] = colors[Math.floor(Math.random() * colors.length)]
   return <a 
+    onClick={props.onClick}
     className={styles.tag}
   >{props.children}</a>
 }

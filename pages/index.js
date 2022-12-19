@@ -6,9 +6,60 @@ import { MdiTagMultiple, MdiFolderOpen } from '../public/svg'
 import Tag from '../component/Tag'
 import docsInfo from '../lib/docs'
 import markdownToTxt from 'markdown-to-txt'
-
+import { useState, useEffect } from 'react'
 export default function Home({tags, books, articles }) {
-  
+  const [_tags, _setTag] = useState([])
+  const [_books, _setbook] = useState([])
+  const [_viewBooks, setViewBook] = useState(articles)
+  function setTag(tag, type) {
+    console.log(type);
+    if (type === 'book') {
+      _setTag([])
+      if (!_books.includes(tag)) {
+        _setbook([..._books, tag])
+      }
+    }
+    if (type === 'tag') {
+      _setbook([])
+      if (!_tags.includes(tag)) {
+        _setTag([..._tags, tag])
+      }
+    }
+    const contentDom = document.getElementById('content')
+    contentDom.scrollIntoView({block: 'start', behavior: 'smooth'})
+  }
+  const _setTagFn = tag => () => {
+    setTag(tag, 'tag')
+  }
+  useEffect(() => {
+    if (_tags.length) {
+      setViewBook(articles.filter(({ tags }) => {
+        let findFlag = false
+        // 如果 article.tags 和 _tags 有重叠 就显示
+        _tags.forEach(item => {
+          if (tags.includes(item)) {
+            findFlag = true
+          }
+        })
+        return findFlag
+      }))
+    } else if (_books.length) {
+      setViewBook(articles.filter(({ book }) => {
+        let findFlag = false
+        // 如果 article.tags 和 _tags 有重叠 就显示
+        _books.forEach(item => {
+          if (book === item) {
+            findFlag = true
+          }
+        })
+        return findFlag
+      }))
+    } else setViewBook(articles)
+  }, [_tags, _books])
+  function getHasTag(arr1, arr2) {
+    if (arr1.length) return arr1
+    return arr2
+  }
   return (
     <div>
       <Head>
@@ -16,11 +67,18 @@ export default function Home({tags, books, articles }) {
         <meta name="description" content="记录下日常 写写所得" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <HomeView tags={tags} books={books} />
+      <HomeView tags={tags} books={books} setTag={setTag} />
       <section className={styles.content} id="content">
         <ul className={styles.articleList}>
           {
-            articles.map(article => <Link
+            !!(_tags.length || _books.length) && <div className={styles.currentTagbox}>
+              {
+                getHasTag(_tags, _books).map(tag => <Tag>{tag}</Tag>)
+              }
+            </div>
+          }
+          {
+            _viewBooks.map(article => <Link
               target='_blank'
               href={article.slug.replace('/', '-path-')}
               key={article.slug}
@@ -53,7 +111,7 @@ export default function Home({tags, books, articles }) {
               标签大集合
             </h2>
             <div>
-              {tags.map(tag => <Tag key={tag.tag}>{tag.tag}</Tag>)}
+              {tags.map(tag => <Tag onClick={_setTagFn(tag.tag)} key={tag.tag}>{tag.tag}</Tag>)}
             </div>
           </div>
           <div className={styles.tagBox}>
@@ -87,23 +145,23 @@ export function getStaticProps() {
   }
 }
 
-function getDescription(article) {
-  console.log(article);
-  const { tags, dir } = article
-  console.log(tags);
-  const Book = <div>
-    <span className={styles.label}>专栏:</span>
-    <tag>{dir}</tag>
-  </div>
+// function getDescription(article) {
+//   console.log(article);
+//   const { tags, dir } = article
+//   console.log(tags);
+//   const Book = <div>
+//     <span className={styles.label}>专栏:</span>
+//     <tag>{dir}</tag>
+//   </div>
 
-  const Tags = <div className={styles.tagWrap}>
-    <span className={styles.label}>标签:</span>
-    {
-      tags.map(tag => <tag>{tag}</tag>)
-    }
-  </div>
-  return <div className={styles.description}>
-    { Book }
-    { Tags }
-  </div>
-}
+//   const Tags = <div className={styles.tagWrap}>
+//     <span className={styles.label}>标签:</span>
+//     {
+//       tags.map(tag => <tag>{tag}</tag>)
+//     }
+//   </div>
+//   return <div className={styles.description}>
+//     { Book }
+//     { Tags }
+//   </div>
+// }

@@ -9,7 +9,7 @@
   width: calc(100% - 270px);
   list-style: none;
   margin: 0;
-  > * {
+  > a {
     display: block;
     background-color: #fff;
     border: 1px solid rgba(#ccc, 0.4);
@@ -144,4 +144,13 @@
   overflow: hidden;
   white-space: nowrap;
   color: rgba(#333, 0.7) !important;
+}
+.currentTagbox {
+  padding-bottom: 20px;
+  > * {
+    margin-right: 10px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 }
