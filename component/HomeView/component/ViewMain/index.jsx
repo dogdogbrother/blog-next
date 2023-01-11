@@ -7,7 +7,7 @@ export default function ViewMain({ tags, books, setTag }) {
   }
   return <div className={styles.viewMain}>
     {/* <img src="/img/favicon.png" alt="avatar" /> */}
-    <img src="https://blog.qbb.sh/images/avatar.png" alt="avatar" />
+    <img src="/img/avatar.png" alt="avatar" />
     <div className={styles.wordBook}>
       <h4>Gunslinger</h4>
       <p>n. 枪手；带枪的歹徒</p>
