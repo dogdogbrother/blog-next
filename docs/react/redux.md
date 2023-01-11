@@ -1,6 +1,6 @@
 ---
 title: react-redux
-tags: redux
+tags: redux react
 book: react
 ---
 ## 认识redux
@@ -112,7 +112,7 @@ export default Home;
 
 效果如下:
 
-![react-1](/img/react-1.gif)
+![redux-1](/docImg/redux-1.gif)
 
 可以看到用到的`api`如下:
 * 创建`store`的`createStore`,参数为自定义的`reducer`.
@@ -273,7 +273,7 @@ function mapDispatchToProps(dispatch) {
 
 效果如下:
 
-![react-thunk](/img/react-thunk.gif)
+![react-thunk](/docImg/react-thunk.gif)
 
 ## redux-devtools
 

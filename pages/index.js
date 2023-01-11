@@ -93,7 +93,7 @@ export default function Home({tags, books, articles }) {
                   <div className={styles.tagWrap}>
                     <span className={styles.label}>标签:</span>
                     {
-                      article.tags.map(tag => <tag>{tag}</tag>)
+                      article.tags.map(tag => <tag key={tag}>{tag}</tag>)
                     }
                   </div>
                 </div>
@@ -144,24 +144,3 @@ export function getStaticProps() {
     }
   }
 }
-
-// function getDescription(article) {
-//   console.log(article);
-//   const { tags, dir } = article
-//   console.log(tags);
-//   const Book = <div>
-//     <span className={styles.label}>专栏:</span>
-//     <tag>{dir}</tag>
-//   </div>
-
-//   const Tags = <div className={styles.tagWrap}>
-//     <span className={styles.label}>标签:</span>
-//     {
-//       tags.map(tag => <tag>{tag}</tag>)
-//     }
-//   </div>
-//   return <div className={styles.description}>
-//     { Book }
-//     { Tags }
-//   </div>
-// }

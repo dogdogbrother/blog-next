@@ -52,7 +52,7 @@ flex的属性容器上有6个,子项上也有6个
 * baseline: 项目的第一行文字的基线对齐。
 * stretch（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。
 
-![align-items](/img/align-items.png)
+![align-items](/docImg/align-items.png)
 
 ## align-content
 
@@ -65,7 +65,7 @@ flex的属性容器上有6个,子项上也有6个
 * space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。
 * stretch（默认值）：轴线占满整个交叉轴。
 
-![align-content](/img/align-content.png)
+![align-content](/docImg/align-content.png)
 
 align-items和align-content都是对轴线的控制.  
 在子元素高度一致且固定的情况下,没有必要设置align-items.  
@@ -113,4 +113,4 @@ flex子项上的6个属性:
 
 **允许单个项目有与其他项目不一样的对齐方式.**可覆盖align-items属性。
 
-![align-self](/img/align-self.png)
+![align-self](/docImg/align-self.png)
