@@ -24,7 +24,7 @@ book: 运维
 
 2. 把秘钥发送到服务器,正常的想法是把秘钥信息复制到linux下的一个文件中,或者scp发送文件到linux中,可惜都不用,是有专门的命令的.
 
-```
+```sh
 ssh-copy-id username@remote-server
 ```
 
@@ -44,7 +44,7 @@ ssh-copy-id username@remote-server
 
 因为这三个环境不太会有环境问题,直接安装即可.
 
-```
+```sh
 cd /opt/
 wget https://cdn.npm.taobao.org/dist/node/v12.13.0/node-v12.13.0-linux-x64.tar.xz
 tar xvf node-v12.13.0-linux-x64.tar.xz
@@ -54,21 +54,21 @@ ln -s /opt/node-v12.13.0-linux-x64/bin/npm /usr/local/bin/npm
 
 测试:
 
-```
+```sh
 node -v
 npm -v
 ```
 
 git和nginx的安装用yum:
 
-```
+```sh
 yum install git
 yum install nginx
 ```
 
 yarn 在 yum 中没有包,需要手动添加下仓库再安装.
 
-```
+```sh
 wget https://dl.yarnpkg.com/rpm/yarn.repo -O /etc/yum.repos.d/yarn.repo
 yum -y install yarn
 ```
@@ -87,19 +87,19 @@ yum -y install yarn
 
 1. 安装yum工具包
 
-```
+```sh
 yum install yum-utils device-mapper-persistent-data lvm2
 ```
 
 2. 设置一个下载docker的国内镜像源,要不然下载会很慢
 
-```
+```sh
 yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 ```
 
 3. 安装docker
 
-```
+```sh
 yum install docker-ce docker-ce-cli containerd.io
 ```
 
@@ -107,13 +107,13 @@ yum install docker-ce docker-ce-cli containerd.io
 
 4. 修改docker的下载镜像源
 
-```
+```sh
 vi /etc/docker/daemon.json
 ```
 
 可能没有这个目录和文件,需要手动创建一下.
 
-```
+```json
 {
 "registry-mirrors": ["https://register.docker-cn.com/"]
 }
@@ -121,14 +121,14 @@ vi /etc/docker/daemon.json
 
 修改好了重启下docker:
 
-```
+```sh
 systemctl daemon-reload
 systemctl restart docker
 ```
 
 5. 安装mysql和配置mysql
 
-```
+```sh
 docker pull daocloud.io/library/mysql:8.0.20
 ```
 
@@ -142,7 +142,7 @@ docker pull daocloud.io/library/mysql:8.0.20
 
 需要指定mysql的密码才能运行mysql容器,我们加上参数重新运行:
 
-```
+```sh
 docker run -d -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=abc123456 镜像id
 ```
 
@@ -161,7 +161,7 @@ docker run -d -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=abc123456 镜像i
 
 使用docker命令进入容器内部.
 
-```
+```sh
 docker exec -it 容器id sh
 ```
 
