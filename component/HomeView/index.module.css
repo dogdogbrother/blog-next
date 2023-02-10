@@ -1,10 +1,12 @@
 .homeView {
   height: 100vh;
-  background: url('/img/home-bg.jpg');
-  background-size: cover;
+  /* background-color: #c2e1ed; */
+  background-image: linear-gradient(to bottom, #68b8d7, #eee 25%)
+  /* background: url('/img/home-bg.jpg'); */
+  /* background-size: cover;
   background-position: center center;
   position: relative;
-  background-attachment: fixed;
+  background-attachment: fixed; */
 }
 .downIcon {
   font-size: 52px;
