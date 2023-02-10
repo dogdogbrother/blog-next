@@ -48,6 +48,15 @@ git branch -D <branch-nane>
 # 重新命名分支
 git branch -m <old-branch-name> <new-branch-name>
 ```
+## git remote
+
+```sh
+# 查看远程仓库
+git remote -v
+
+# 删除
+git remote remove <name>
+```
 
 ## git stash 暂存文件
 
