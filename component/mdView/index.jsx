@@ -1,4 +1,4 @@
-import styles from './index.module.css'
+import styles from './index.module.scss'
 import MarkDown from 'markdown-to-jsx'
 import Prism from 'prismjs'
 import 'prismjs/components/prism-less'
@@ -6,6 +6,7 @@ import 'prismjs/components/prism-bash'
 import 'prismjs/components/prism-json'
 import 'prismjs/components/prism-typescript'
 import 'prismjs/themes/prism-okaidia.css'
+import VantaBg from './vantaBg'
 
 import { useEffect, useState } from 'react'
 const debounce = (func, delay) => {
@@ -53,6 +54,7 @@ export default function MdView({ content }) {
   
   return <>
     <main className={styles.mkWrap}>
+      <VantaBg />
       <div className={styles.paper}>
         <MarkDown
           children={content}

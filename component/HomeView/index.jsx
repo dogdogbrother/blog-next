@@ -24,7 +24,7 @@ export default function HomeView({ tags, books, setTag }) {
     const contentDom = document.getElementById('content')
     contentDom.scrollIntoView({block: 'start', behavior: 'smooth'})
   }
-  return <section className={styles.homeView} ref={myRef} >
+  return <section className={styles.homeView} ref={myRef}>
     <NavHeader />
     <ViewMain tags={tags} books={books} setTag={setTag} />
     <MdiChevronDown className={styles.downIcon} onClick={toContent} />
