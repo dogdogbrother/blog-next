@@ -1,4 +1,4 @@
-import styles from './index.module.css'
+import styles from './index.module.scss'
 import NavHeader from './component/NavHeader'
 import ViewMain from './component/ViewMain'
 import { MdiChevronDown } from '../../public/svg/index'

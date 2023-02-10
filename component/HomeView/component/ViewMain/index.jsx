@@ -1,4 +1,4 @@
-import styles from './index.module.css'
+import styles from './index.module.scss'
 import Tag from '../../../Tag'
 
 export default function ViewMain({ tags, books, setTag }) {

@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.scss'
 import HomeView from '../component/HomeView'
 import { MdiTagMultiple, MdiFolderOpen } from '../public/svg'
 import Tag from '../component/Tag'

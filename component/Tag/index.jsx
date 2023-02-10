@@ -1,4 +1,4 @@
-import styles from './index.module.css'
+import styles from './index.module.scss'
 // const colors = [
 //   ['#2C73D2', '#0089BA'],
 //   ['#845EC2', '#D65DB1'],
