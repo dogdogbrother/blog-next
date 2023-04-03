@@ -12,7 +12,6 @@ export default function Home({tags, books, articles }) {
   const [_books, _setbook] = useState([])
   const [_viewBooks, setViewBook] = useState(articles)
   function setTag(tag, type) {
-    console.log(type);
     if (type === 'book') {
       _setTag([])
       if (!_books.includes(tag)) {
