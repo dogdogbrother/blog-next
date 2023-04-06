@@ -7,6 +7,7 @@ import Tag from '../component/Tag'
 import docsInfo from '../lib/docs'
 import markdownToTxt from 'markdown-to-txt'
 import { useState, useEffect } from 'react'
+
 export default function Home({tags, books, articles }) {
   const [_tags, _setTag] = useState([])
   const [_books, _setbook] = useState([])
