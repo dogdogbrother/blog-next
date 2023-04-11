@@ -175,3 +175,23 @@ type Pick<T, K extends keyof T> = {
     [P in K]: T[P];
 };
 ```
+
+## Exclude
+
+`Exclude<T,U>`的作用是将某个类型中属于另一个的类型移除掉.
+
+```ts
+type T0 = Exclude<"a" | "b" | "c", "a">; // "b" | "c"
+type T1 = Exclude<"a" | "b" | "c", "a" | "b">; // "c"
+type T2 = Exclude<string | number | (() => void), Function>; // string | number
+```
+
+源码实现:
+
+```ts
+type Exclude<T, U> = T extends U ? never : T;
+```
+
+如果这个源码看不明白是啥意思的话,可以去看另一篇[讲extends的文章]().
+
+大体来说,就是把左侧的联合类型`in`了下,反向`filter`,把符合的`key`剔除掉.
