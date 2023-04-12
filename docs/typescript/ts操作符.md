@@ -4,68 +4,6 @@ tags: typescript
 book: typescript
 ---
 
-## keyof
-
-`typeof` 操作符可以用来获取一个**变量的声明**，或是**对象的类型**。
-
-```ts
-//例子1
-interface People {
-  name: string;
-  age: number;
-}
-​
-const variableDai: People = { name: 'coolFish', age: 24 };
-type formDai= typeof variableDai; // -> People
-​
-//例子2
-function toArray(x: number): Array<number> {
-  return [x];
-}
-​
-type Func = typeof toArray; // -> (x: number) => number[]
-```
-
-## keyof
-
-`keyof`操作符可以用来一个对象中的所有`key`值, 返回的是这些`key`值的联合类型。
-
-```ts
-interface Person {
-    name: string;
-    age: number;
-}
-​
-type allKey = keyof Person; // "name" | "age"
-```
-
-## in
-
-`in` **用来遍历枚举类型**.
-
-```ts
-type Keys = "a" | "b" | "c"
-​
-type Obj =  {
-  [p in Keys]: any
-} 
-//{ a: any, b: any, c: any }
-```
-
-## infer
-
-**在条件类型语句中**，可以用i`nfer`声明一个类型变量，并且对它进行使用。
-
-```ts
-//返回数组的第一项
-type Head<T extends Array<any>> =  T extends [head : infer H, ...rest : any[]] ? H : never;
-​
-// 测试用例
-type H0 = Head<[]> // never
-type H1 = Head<[1]> // 1
-type H2 = Head<[3, 2]> // 3
-```
-
 ## Partial
 
 `Partial<T>` 的作用就是将某个类型里的属性全部变成可选，该方法是联合了 `keyof` 和 `in` 实现的。
@@ -178,7 +116,7 @@ type Pick<T, K extends keyof T> = {
 
 ## Exclude
 
-`Exclude<T,U>`的作用是将某个类型中属于另一个的类型移除掉.
+`Exclude<T,U>`的作用是将左侧类型中与右侧重叠的属性去除掉.
 
 ```ts
 type T0 = Exclude<"a" | "b" | "c", "a">; // "b" | "c"
@@ -195,3 +133,58 @@ type Exclude<T, U> = T extends U ? never : T;
 如果这个源码看不明白是啥意思的话,可以去看另一篇[讲extends的文章]().
 
 大体来说,就是把左侧的联合类型`in`了下,反向`filter`,把符合的`key`剔除掉.
+
+## Extract
+
+作用和上面的`Exclude`相反,将左侧类型中与右侧重叠的属性去保留.
+
+```ts
+type T0 = Extract<"a" | "b" | "c", "a">; // "a"
+type T1 = Extract<"a" | "b" | "c", "a" | "b">; // "a" | "b"
+type T2 = Extract<string | number | (() => void), Function>; // () => void
+```
+源码实现:
+
+```ts
+type Extract<T, U> = T extends U ? T : never
+```
+
+## Omit
+
+作用是剔除掉我们不想要的属性.
+
+```ts
+interface Todo {
+  title: string
+  description: string
+  completed: boolean
+}
+​
+type TodoPreview = Omit<Todo, "description">
+​
+const todo: TodoPreview = {
+  title: "Clean room",
+  completed: false
+};
+```
+
+## ReturnType
+
+用于提取函数的返回值类型.
+
+```ts
+// 比如
+type Func = () => User;
+type Test = ReturnType<Func>; // Test = User
+
+// 其他例子
+type T0 = ReturnType<() => string>; // string
+```
+
+源码.
+
+```ts
+type MyReturnType<T extends (...args: any) => any> = T extends (...args: any) => infer R ? R : any;
+```
+
+第一个`extends`是为了防止你传入非函数类型,后面的就是通过`infer`来定义返回值类型并返回.
