@@ -56,6 +56,15 @@ git remote -v
 
 # 删除
 git remote remove <name>
+
+# 新增
+git remote add <origin名称> <git地址>
+
+# 更改仓库别名
+git remote rename <origin> <new-origin>
+
+# 更新远程仓库分支信息
+git remote update <origin>
 ```
 
 ## git stash 暂存文件
