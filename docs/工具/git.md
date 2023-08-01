@@ -72,14 +72,23 @@ git remote update <origin>
 ```sh
 # 把本地的改动暂存起来
 git stash 
+
+# 从未 track 的文件是不会被隐藏的 需要加上-u参数, --include-untracked 的简写
+
+git stash -u
+
 # 执行存储时，添加备注，方便查找。
 git stash save "message" 
+
 # 应用最近一次暂存的修改，并删除暂存的记录
 git stash pop
+
 # 应用某个存储,但不会把存储从存储列表中删除，默认使用第一个存储,即 stash@{0}，如果要使用其他个，git stash apply stash@{$num}
 git stash apply
+
 # 查看 stash 有哪些存储
 git stash list
+
 # 删除所有缓存的 stash
 git stash clear
 ```
