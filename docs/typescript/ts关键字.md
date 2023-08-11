@@ -9,7 +9,7 @@ book: typescript
 `typeof` 操作符可以用来获取一个**变量的声明**，或是**对象的类型**。
 
 ```ts
-//例子1
+// 例子1
 interface People {
   name: string;
   age: number;
@@ -18,7 +18,7 @@ interface People {
 const variableDai: People = { name: 'coolFish', age: 24 };
 type formDai= typeof variableDai; // -> People
 ​
-//例子2
+// 例子2
 function toArray(x: number): Array<number> {
   return [x];
 }
@@ -75,6 +75,25 @@ type H2 = Head<[3, 2]> // 3
 interface Prop extends Prop2, Prop3 {
   // ...
 }
+```
+### 泛型约束
+
+```ts
+function fn<P extends number | string | boolean>(param: P):P {
+  return param;
+}
+fn(1) // ok
+fn(null) // 报错: 类型“null”的参数不能赋给类型“string | number | boolean”的参数。
+
+// -------------
+
+type Info = {
+  name:string
+  age:number
+}
+
+function fn<P extends keyof Info>(param: P) {}
+fn('name') // ok
 ```
 
 ### 条件三元判断下的 extends
