@@ -188,3 +188,12 @@ type MyReturnType<T extends (...args: any) => any> = T extends (...args: any) =>
 ```
 
 第一个`extends`是为了防止你传入非函数类型,后面的就是通过`infer`来定义返回值类型并返回.
+
+## Uppercase/Lowercase/Capitalize/Uncapitalize
+
+这些工具类型专用于字符串字面量类型,看名字就能知道它们的作用：字符串大写、字符串小写、首字母大、首字母小写.
+
+```ts
+type Heavy<T extends string> = `${Uppercase<T>}`;
+type HeavyName = Heavy<'linbudu'>; // "LINBUDU"
+```

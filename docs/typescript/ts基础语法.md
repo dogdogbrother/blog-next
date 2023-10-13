@@ -129,3 +129,52 @@ interface man extends Biology, Person {
   // ...
 }
 ```
+
+## 模板字符串类型
+
+先看一个最简单的使用例子：
+
+```ts
+type World = 'World';
+
+// "Hello World"
+type Greeting = `Hello ${World}`;
+```
+
+也可以传入泛型:
+
+```ts
+type Greet<T extends string | number | boolean> = `Hello ${T}`;
+
+type Greet1 = Greet<"linbudu">; // "Hello linbudu"
+type Greet2 = Greet<599>; // "Hello 599"
+type Greet3 = Greet<true>; // "Hello true"
+```
+
+在需要声明大量存在关联的字符串字面量类型时，模板字符串类型也能在减少代码的同时获得更好的类型保障.
+
+```ts
+type SKU =
+  | 'iphone-16G-official'
+  | 'xiaomi-16G-official'
+  | 'honor-16G-official'
+  | 'iphone-16G-second-hand'
+  | 'xiaomi-16G-second-hand'
+  | 'honor-16G-second-hand'
+  | 'iphone-64G-official'
+  | 'xiaomi-64G-official'
+  | 'honor-64G-official'
+  | 'iphone-64G-second-hand'
+  | 'xiaomi-64G-second-hand'
+  | 'honor-64G-second-hand';
+```
+
+优化后:
+
+```ts
+type Brand = 'iphone' | 'xiaomi' | 'honor';
+type Memory = '16G' | '64G';
+type ItemType = 'official' | 'second-hand';
+
+type SKU = `${Brand}-${Memory}-${ItemType}`;
+```
